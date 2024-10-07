@@ -34,4 +34,7 @@ router.get('/page', productController.getProductsByPage);
 //http://localhost:5000/product/search
 router.post('/search', productController.searchProducts);
 
+
+// tìm kiếm sản phẩm theo giádsa
+
 module.exports = router;
