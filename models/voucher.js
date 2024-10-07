@@ -10,27 +10,27 @@ const Voucher = sequelize.define('Voucher', {
         primaryKey: true
     },
     ma_voucher: {
-        type: DataTypes.STRING(255),  // VARCHAR(255)
+        type: DataTypes.STRING(255),  
         allowNull: false
     },
     gia_tri: {
-        type: DataTypes.INTEGER,  // INT
+        type: DataTypes.INTEGER,  
         allowNull: true, 
         defaultValue: null
     },
     bat_dau: {
-        type: DataTypes.DATE,  // DATETIME
+        type: DataTypes.DATE, 
         allowNull: true,
         defaultValue: null
     },
     ket_thuc: {
-        type: DataTypes.DATE,  // DATETIME
+        type: DataTypes.DATE,  
         allowNull: true,
         defaultValue: null
 
     },
     mo_ta: {
-        type: DataTypes.STRING(100),  // VARCHAR(100)
+        type: DataTypes.STRING(100),  
         allowNull: true,
         defaultValue: null
     }

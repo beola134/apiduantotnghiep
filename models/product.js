@@ -20,7 +20,6 @@ const Product = sequelize.define('Product', {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: true
     },
-    //gia_giam 	int(30)
     gia_giam: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
