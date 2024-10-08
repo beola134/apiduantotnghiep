@@ -8,6 +8,7 @@ const cateController = require("../controllers/cateController");
 router.get("/allsp", productController.getAllProducts);
 
 //show danh mục theo gới tính
+//http://localhost:5000/product/allsp/gioitinh?gioitinh=Nam
 //http://localhost:5000/product/allsp/gioitinh"
 router.get("/allsp/gioitinh", productController.getCatesByGender);
 
@@ -21,6 +22,7 @@ router.get("/cate/:id", productController.getProductsByCate);
 //show sản phẩm mới trong danh mục
 //http://localhost:5000/product/productnew/
 router.get("/productnew/", productController.getNewProductsByCategory);
+
 //chi tiết sản phẩm theo id
 //http://localhost:5000/product/detailsp
 router.get("/detailsp/:id", productController.getProductById);

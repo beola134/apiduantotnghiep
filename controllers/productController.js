@@ -65,6 +65,7 @@ exports.getProductsByCate = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 //Lọc sản phẩm mới theo danh mục
 exports.getNewProductsByCategory = async (req, res) => {
   try {
