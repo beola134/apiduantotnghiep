@@ -13,15 +13,58 @@ exports.getAllProducts = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-// Lấy danh mục theo giới tính
-exports.getCatesByGender = async (req, res) => {
+// lấy sản phẩm dưới 2 c
+exports.getProductsUnderTwoMillion = async (req, res) => {
   try {
-    const gioitinh = req.query.gioitinh;
-    console.log(gioitinh);
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.lt]: 2000000, // Sản phẩm có giá nhỏ hơn 2 triệu
+        },
+      },
+    });
 
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào dưới 2 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products under 2 million:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo dường kính
+exports.getChatLieuDay = async (req, res) => {
+  try {
     const cates = await Product.findAll({
-      where: { gioi_tinh: gioitinh },
+      where: { duong_kinh: "Dây da" }, // Ensure the value matches the ENUM casing
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo chat liệu dây
+exports.getChatLieuDay = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { chat_lieu_day: "Dây da" }, // Ensure the value matches the ENUM casing
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+// Lấy danh mục theo giới tính "Nam"
+exports.getMale = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { gioi_tinh: "Nam" }, // Ensure the value matches the ENUM casing
     });
     res.json(cates);
   } catch (error) {
@@ -30,16 +73,16 @@ exports.getCatesByGender = async (req, res) => {
 };
 
 // Lấy danh mục theo giới tính "Nữ"
-// exports.getCatesByGender = async (req, res) => {
-//   try {
-//     const cates = await Products.findAll({
-//       where: { gioi_tinh: "Nữ" }, // Ensure the value matches the ENUM casing
-//     });
-//     res.json(cates);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
+exports.getFeMale = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { gioi_tinh: "Nữ" }, // Ensure the value matches the ENUM casing
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 // Lấy danh mục theo "Đôi"
 exports.getCatesByCouple = async (req, res) => {
@@ -66,32 +109,24 @@ exports.getProductsByCate = async (req, res) => {
   }
 };
 
-//Lọc sản phẩm mới theo danh mục
-exports.getNewProductsByCategory = async (req, res) => {
+// show sản phẩm mới nhất
+exports.getNewProducts = async (req, res) => {
   try {
-    // Tìm danh mục "Đồng hồ Nam"
-    const cate = req.query.cate;
-    const category = await Category.findOne({
-      where: { danh_muc: cate },
-    });
-    console.log(category.dataValues._id);
-
-    if (!category) {
-      return res.status(404).json({ error: "Danh mục không tồn tại" });
-    }
-    // Lấy các sản phẩm mới nhất (sắp xếp theo ngày tạo) theo category_id
     const products = await Product.findAll({
-      where: { id_danh_muc: category.dataValues._id },
-      order: [["_id", "DESC"]], // Sắp xếp sản phẩm mới nhất
-      limit: 10, // Giới hạn lấy 10 sản phẩm mới nhất (có thể thay đổi)
+      order: [["createdAt", "DESC"]], // Sắp xếp sản phẩm theo ngày tạo mới nhất
+      limit: 10,
     });
+
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Không có sản phẩm nào" });
+    }
 
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
 //Chi tiết sản phẩm theo id
 exports.getProductById = async (req, res) => {
   try {

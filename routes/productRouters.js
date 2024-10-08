@@ -7,17 +7,29 @@ const cateController = require("../controllers/cateController");
 //http://localhost:5000/product/allsp
 router.get("/allsp", productController.getAllProducts);
 
-//show danh mục theo gới tính
-//http://localhost:5000/product/allsp/gioitinh?gioitinh=Nam
-//http://localhost:5000/product/allsp/gioitinh"
-router.get("/allsp/gioitinh", productController.getCatesByGender);
+//show sản phẩm theo giới tính nam
+//http://localhost:5000/product/allsp/gioitinh-nam
+router.get("/allsp/gioitinh-nam", productController.getMale);
+
+//show sản phẩm theo giới tính nữ
+//http://localhost:5000/product/allsp/gioitinh-nu
+router.get("/allsp/gioitinh-nu", productController.getFeMale);
+
+//show sản phẩm theo giá dưới 2 củ
+//http://localhost:5000/product/allsp/underTwomillion
+router.get("/allsp/underTwomillion", productController.getProductsUnderTwoMillion);
 
 //http://localhost:5000/product/allsp/doi"
 router.get("/allsp/doi", productController.getCatesByCouple);
 
+// show sản phẩm thêm chất liệu dây
+//http://localhost:5000/product/allsp/getChatLieuDay"
+router.get("/allsp/getChatLieuDay", productController.getChatLieuDay);
+;
+
 //show sản phẩm mới trong danh mục
 //http://localhost:5000/product/productnew/
-router.get("/productnew/", productController.getNewProductsByCategory);
+router.get("/productnew/", productController.getNewProducts);
 
 //show sản phẩm theo danh mục
 //http://localhost:5000/product/category/:id
