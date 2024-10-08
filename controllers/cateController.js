@@ -11,7 +11,7 @@ exports.getAllCates = async (req, res) => {
   }
 };
 
-// Lấy danh mục theo ID
+
 
 // Hàm xử lý việc thêm danh mục với hình ảnh
 exports.addCate = async (req, res) => {
