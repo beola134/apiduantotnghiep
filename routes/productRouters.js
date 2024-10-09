@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController");
 const cateController = require("../controllers/cateController");
+//day code vd
+
 
 //show tất cả sản phẩm
 //http://localhost:5000/product/allsp
@@ -64,11 +66,6 @@ router.get("/phantrang", productController.getProductsByPage);
 //api tìm kiếm sản phẩm bằng cách nhập tên sản phẩm và tên danh mục
 //http://localhost:5000/product/timkiem
 router.post("/timkiem", productController.searchProducts);
-
-
-//show sản phẩm mới nhất theo gioi_tinh nam 
-//http://localhost:5000/product/newest/gioitinh-nam
-router.get("/newest/gioitinh-nam", productController.getNewProductsMale);
 
 
 module.exports = router;
