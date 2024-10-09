@@ -20,7 +20,7 @@ router.get("/allsp/gioitinh-nam10sp", productController.getMale10sp);
 router.get("/allsp/gioitinh-nu", productController.getFeMale);
 
 //show sản phẩm theo giới tính nu10sp
-//http://localhost:5000/product/allsp/gioitinh-nam10sp
+//http://localhost:5000/product/allsp/gioitinh-nu10sp
 router.get("/allsp/gioitinh-nu10sp", productController.getFeMale10sp);
 
 //http://localhost:5000/product/allsp/doi"
