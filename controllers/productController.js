@@ -37,20 +37,9 @@ exports.getProductsUnderTwoMillion = async (req, res) => {
   }
 };
 
-// Lấy danh mục theo dường kính
-exports.getChatLieuDay = async (req, res) => {
-  try {
-    const cates = await Product.findAll({
-      where: { duong_kinh: "Dây da" }, // Ensure the value matches the ENUM casing
-    });
-    res.json(cates);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 // Lấy danh mục theo chat liệu dây
-exports.getChatLieuDay = async (req, res) => {
+exports.getChatLieuDayDa = async (req, res) => {
   try {
     const cates = await Product.findAll({
       where: { chat_lieu_day: "Dây da" }, // Ensure the value matches the ENUM casing
@@ -64,7 +53,20 @@ exports.getChatLieuDay = async (req, res) => {
 exports.getMale = async (req, res) => {
   try {
     const cates = await Product.findAll({
-      where: { gioi_tinh: "Nam" }, // Ensure the value matches the ENUM casing
+      where: { gioi_tinh: "Nam" },
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo giới tính "Nam" 10sp
+exports.getMale10sp = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { gioi_tinh: "Nam" },
+      limit:10
     });
     res.json(cates);
   } catch (error) {
@@ -76,7 +78,20 @@ exports.getMale = async (req, res) => {
 exports.getFeMale = async (req, res) => {
   try {
     const cates = await Product.findAll({
-      where: { gioi_tinh: "Nữ" }, // Ensure the value matches the ENUM casing
+      where: { gioi_tinh: "Nữ" },
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo giới tính "Nữ"10sp
+exports.getFeMale10sp = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { gioi_tinh: "Nữ" },
+      limit:10
     });
     res.json(cates);
   } catch (error) {
@@ -85,10 +100,23 @@ exports.getFeMale = async (req, res) => {
 };
 
 // Lấy danh mục theo "Đôi"
-exports.getCatesByCouple = async (req, res) => {
+exports.getCouple = async (req, res) => {
   try {
     const cates = await Product.findAll({
       where: { gioi_tinh: "Đồng Hồ Đôi" },
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo giới tính "Nữ"
+exports.getCouple10sp = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { gioi_tinh: "Đồng Hồ Đôi" },
+      limit:10
     });
     res.json(cates);
   } catch (error) {
@@ -109,7 +137,7 @@ exports.getProductsByCate = async (req, res) => {
   }
 };
 
-// show sản phẩm mới nhất
+// // show sản phẩm mới nhất
 exports.getNewProducts = async (req, res) => {
   try {
     const products = await Product.findAll({

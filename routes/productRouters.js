@@ -11,25 +11,31 @@ router.get("/allsp", productController.getAllProducts);
 //http://localhost:5000/product/allsp/gioitinh-nam
 router.get("/allsp/gioitinh-nam", productController.getMale);
 
+//show sản phẩm theo giới tính nam10sp
+//http://localhost:5000/product/allsp/gioitinh-nam10sp
+router.get("/allsp/gioitinh-nam10sp", productController.getMale10sp);
+
 //show sản phẩm theo giới tính nữ
 //http://localhost:5000/product/allsp/gioitinh-nu
 router.get("/allsp/gioitinh-nu", productController.getFeMale);
+
+//show sản phẩm theo giới tính nu10sp
+//http://localhost:5000/product/allsp/gioitinh-nam10sp
+router.get("/allsp/gioitinh-nu10sp", productController.getFeMale10sp);
+
+//http://localhost:5000/product/allsp/doi"
+router.get("/allsp/doi", productController.getCouple);
+
+//http://localhost:5000/product/allsp/doi10sp"
+router.get("/allsp/doi10sp", productController.getCouple10sp);
 
 //show sản phẩm theo giá dưới 2 củ
 //http://localhost:5000/product/allsp/underTwomillion
 router.get("/allsp/underTwomillion", productController.getProductsUnderTwoMillion);
 
-//http://localhost:5000/product/allsp/doi"
-router.get("/allsp/doi", productController.getCatesByCouple);
-
 // show sản phẩm thêm chất liệu dây
-//http://localhost:5000/product/allsp/getChatLieuDay"
-router.get("/allsp/getChatLieuDay", productController.getChatLieuDay);
-;
-
-//show sản phẩm mới trong danh mục
-//http://localhost:5000/product/productnew/
-router.get("/productnew/", productController.getNewProducts);
+//http://localhost:5000/product/allsp/getChatLieuDayDa"
+router.get("/allsp/getChatLieuDayDa", productController.getChatLieuDayDa);
 
 //show sản phẩm theo danh mục
 //http://localhost:5000/product/category/:id
