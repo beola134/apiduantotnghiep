@@ -357,3 +357,24 @@ exports.searchProducts = async (req, res) => {
     return res.status(500).json({ message: "Lỗi khi tìm kiếm sản phẩm" });
   }
 };
+
+
+//show sản phẩm mới nhất theo gioi_tinh nam giới hạn 10 sản phẩm
+exports.getNewProductsMale = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      //tìm kiếm trong bảng product theo giới tính nam
+      where: { gioi_tinh: "Nam" },
+      //sắp xếp theo ngày tạo mới nhất
+      order: [["createdAt", "DESC"]],
+      limit: 10,
+    });
+    //nếu không có sản phẩm nào
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Không có sản phẩm nào" });
+    }
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

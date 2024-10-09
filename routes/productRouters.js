@@ -65,4 +65,10 @@ router.get("/phantrang", productController.getProductsByPage);
 //http://localhost:5000/product/timkiem
 router.post("/timkiem", productController.searchProducts);
 
+
+//show sản phẩm mới nhất theo gioi_tinh nam 
+//http://localhost:5000/product/newest/gioitinh-nam
+router.get("/newest/gioitinh-nam", productController.getNewProductsMale);
+
+
 module.exports = router;
