@@ -13,42 +13,62 @@ exports.getAllProducts = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-// lấy sản phẩm dưới 2 c
-exports.getProductsUnderTwoMillion = async (req, res) => {
+// show sản phẩm mới nhất Nam
+exports.getNewProductsMale = async (req, res) => {
   try {
     const products = await Product.findAll({
-      where: {
-        gia_san_pham: {
-          [Op.lt]: 2000000, // Sản phẩm có giá nhỏ hơn 2 triệu
-        },
-      },
+      where: { gioi_tinh: "Nam" },
+      order: [["createdAt", "DESC"]],
+      limit: 10,
     });
 
     if (products.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy sản phẩm nào dưới 2 triệu" });
+      return res.status(404).json({ message: "Không có sản phẩm nào" });
     }
-
     res.json(products);
   } catch (error) {
-    console.error("Error fetching products under 2 million:", error.message);
     res.status(500).json({ error: error.message });
   }
 };
 
-
-// Lấy danh mục theo chat liệu dây
-exports.getChatLieuDayDa = async (req, res) => {
+// show sản phẩm mới nhất nu
+exports.getNewProductsFeMale = async (req, res) => {
   try {
-    const cates = await Product.findAll({
-      where: { chat_lieu_day: "Dây da" }, // Ensure the value matches the ENUM casing
+    const products = await Product.findAll({
+      where: { gioi_tinh: "Nữ" },
+      order: [["createdAt", "DESC"]],
+      limit: 10,
     });
-    res.json(cates);
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Không có sản phẩm nào" });
+    }
+    res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+// show sản phẩm mới nhất Đôi
+exports.getNewProductsCouple = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: { gioi_tinh: "Đồng Hồ Đôi" },
+      order: [["createdAt", "DESC"]],
+      limit: 10,
+    });
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Không có sản phẩm nào" });
+    }
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 // Lấy danh mục theo giới tính "Nam"
 exports.getMale = async (req, res) => {
   try {
@@ -124,6 +144,42 @@ exports.getCouple10sp = async (req, res) => {
   }
 };
 
+// lấy sản phẩm dưới 2 c
+exports.getProductsUnderTwoMillion = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.lt]: 2000000, // Sản phẩm có giá nhỏ hơn 2 triệu
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào dưới 2 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products under 2 million:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo chat liệu dây
+exports.getChatLieuDayDa = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { chat_lieu_day: "Dây da" }, // Ensure the value matches the ENUM casing
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 //show sản phẩm theo danh mục show lun thông tin danh mục sản phẩm
 exports.getProductsByCate = async (req, res) => {
   try {
@@ -137,24 +193,6 @@ exports.getProductsByCate = async (req, res) => {
   }
 };
 
-// // show sản phẩm mới nhất
-exports.getNewProducts = async (req, res) => {
-  try {
-    const products = await Product.findAll({
-      order: [["createdAt", "DESC"]], // Sắp xếp sản phẩm theo ngày tạo mới nhất
-      limit: 10,
-    });
-
-
-    if (products.length === 0) {
-      return res.status(404).json({ message: "Không có sản phẩm nào" });
-    }
-
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 //Chi tiết sản phẩm theo id
 exports.getProductById = async (req, res) => {
   try {

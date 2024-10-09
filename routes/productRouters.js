@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController");
-const cateController = require("../controllers/cateController");
 //day code vd
 
 
 //show tất cả sản phẩm
 //http://localhost:5000/product/allsp
 router.get("/allsp", productController.getAllProducts);
+
+//show sản phẩm mới nhất theo gioi_tinh nam 
+//http://localhost:5000/product/new/gioitinh-nam
+router.get("/new/gioitinh-nam", productController.getNewProductsMale);
 
 //show sản phẩm theo giới tính nam
 //http://localhost:5000/product/allsp/gioitinh-nam
@@ -16,6 +19,10 @@ router.get("/allsp/gioitinh-nam", productController.getMale);
 //show sản phẩm theo giới tính nam10sp
 //http://localhost:5000/product/allsp/gioitinh-nam10sp
 router.get("/allsp/gioitinh-nam10sp", productController.getMale10sp);
+
+//show sản phẩm mới nhất theo gioi_tinh nữ 
+//http://localhost:5000/product/new/gioitinh-nu
+router.get("/new/gioitinh-nu", productController.getNewProductsFeMale)
 
 //show sản phẩm theo giới tính nữ
 //http://localhost:5000/product/allsp/gioitinh-nu
@@ -31,6 +38,10 @@ router.get("/allsp/doi", productController.getCouple);
 //http://localhost:5000/product/allsp/doi10sp"
 router.get("/allsp/doi10sp", productController.getCouple10sp);
 
+//show sản phẩm mới nhất theo doi
+//http://localhost:5000/product/new/doi
+router.get("/new/doi", productController.getNewProductsCouple)
+
 //show sản phẩm theo giá dưới 2 củ
 //http://localhost:5000/product/allsp/underTwomillion
 router.get("/allsp/underTwomillion", productController.getProductsUnderTwoMillion);
@@ -38,7 +49,6 @@ router.get("/allsp/underTwomillion", productController.getProductsUnderTwoMillio
 // show sản phẩm thêm chất liệu dây
 //http://localhost:5000/product/allsp/getChatLieuDayDa"
 router.get("/allsp/getChatLieuDayDa", productController.getChatLieuDayDa);
-
 //show sản phẩm theo danh mục
 //http://localhost:5000/product/category/:id
 router.get("/category/:id", productController.getProductsByCate);
