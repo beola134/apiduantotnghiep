@@ -156,23 +156,195 @@ exports.getProductsUnderTwoMillion = async (req, res) => {
     });
 
     if (products.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy sản phẩm nào dưới 2 triệu" });
+      return res.status(404).json({ message: "Không tìm thấy sản phẩm nào dưới 2 triệu" });
     }
 
     res.json(products);
   } catch (error) {
-    console.error("Error fetching products under 2 million:", error.message);
+    console.error("sản phẩm dưới 2 triệu", error.message);
     res.status(500).json({ error: error.message });
   }
 };
 
-// Lấy danh mục theo chat liệu dây
+//lấy sản phẩm từ 2 đến 5 triệu
+exports.getProductstu2den5trieu= async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.between]: [2000000, 5000000], 
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//lấy sản phẩm từ 5 đến 10 triệu
+exports.getProductstu5den10trieu = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.between]: [5000000, 10000000],
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//lấy sản phẩm từ 10 đến 20 triệu
+exports.getProductstu10den20trieu = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.between]: [10000000, 20000000],
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//lấy sản phẩm từ 20 đến 30 triệu
+exports.getProductstu20den30trieu = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.between]: [20000000, 30000000],
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+//lấy sản phẩm từ 30 đến 50 triệu
+exports.getProductstu30den50trieu = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.between]: [30000000, 50000000],
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+//lấy sản phẩm từ 50 đến 100 triệu
+exports.getProductstu50den100trieu = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.between]: [50000000, 100000000],
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+//lấy sản phẩm treen 100 triệu
+exports.getProductsOver100trieu = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        gia_san_pham: {
+          [Op.gt]: [ 100000000],
+        },
+      },
+    });
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy sản phẩm nào từ 2 đến 5 triệu" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Lấy danh mục theo chat liệu dây da
 exports.getChatLieuDayDa = async (req, res) => {
   try {
     const cates = await Product.findAll({
       where: { chat_lieu_day: "Dây da" }, // Ensure the value matches the ENUM casing
+    });
+    res.json(cates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+// Lấy danh mục theo chat liệu dây dù
+exports.getChatLieuDayDu = async (req, res) => {
+  try {
+    const cates = await Product.findAll({
+      where: { chat_lieu_day: "Dây dù" }, // Ensure the value matches the ENUM casing
     });
     res.json(cates);
   } catch (error) {
