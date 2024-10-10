@@ -52,6 +52,10 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING(100),
         allowNull: true
     },
+    loai:{
+        type: DataTypes.STRING(100),
+        allowNull: true
+    },
     duong_kinh: {
         type: DataTypes.STRING(100),
         allowNull: true
