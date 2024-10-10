@@ -1,10 +1,10 @@
 var createError = require('http-errors');
 var express = require('express');
+const cors = require("cors");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sequelize = require('./config/database'); // Import sequelize instance
-
 var cateRouter = require('./routes/cateRouters');
 var productRouter = require('./routes/productRouters');
 var userRouter = require('./routes/usersRouters');
@@ -13,8 +13,8 @@ var donhangRouter = require('./routes/donhangRouters');
 var ptttRouter = require('./routes/ptttRouters');
 var voucherRouter = require('./routes/voucherRouters');
 var saleRouter = require('./routes/saleRouters');
-
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
